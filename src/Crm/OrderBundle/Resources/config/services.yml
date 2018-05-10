@@ -1,0 +1,4 @@
+services:
+#    crm_order.example:
+#        class: Crm\OrderBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

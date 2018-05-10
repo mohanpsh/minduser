@@ -1,0 +1,49 @@
+{% extends "app/base.html.twig" %}
+
+{% block title %}
+    User View Page
+{% endblock %}
+
+{% block page_content %}
+    {% block top_content_header %}
+    {% endblock %}
+  <div class="setcontainer">
+      <h2 style="margin-bottom:0;">UserManager</h2>
+      <h4 style="margin-top:0;">(show user)</h4>
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <td>id</td><td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <td>username</td><td>{{ entity.username }}</td>
+        </tr>
+        <tr>
+            <td>email</td><td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <td>apiKey</td><td>{{ entity.apiKey }}</td>
+        </tr>
+    </table>
+    <hr />
+    <div>
+        <div class="pull-left">
+            <a class="btn btn-primary" href="{{ path('app_user_list') }}">
+                Back To Overview
+            </a>
+        </div>
+        <div class="pull-left" style="margin-left:20px;">
+            <a class="btn btn-success" href="{{ path('app_user_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </div>
+        <div class="pull-left" style="margin-left:20px;">
+            <form action="{{ path('app_user_delete', { 'id': entity.id }) }}" method="post">
+                {{ form_start(delete_form) }}
+                {{ form_widget(delete_form) }}
+                {{ form_end(delete_form) }}
+            </form>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+  </div>
+{% endblock %}

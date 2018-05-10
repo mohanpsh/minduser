@@ -1,0 +1,36 @@
+{% extends "app/base.html.twig" %}
+
+{% block title %}
+    User Edit
+{% endblock %}
+
+{% block page_content %}
+    {% block top_content_header %}
+    {% endblock %}
+    <div class="setcontainer">
+        <h2 style="margin-bottom:0;">UserManager</h2>
+        <h4 style="margin-top:0;">(edit user)</h4>
+        <div class="well">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            {{ form_end(edit_form) }}
+        </div>
+        <div>
+            <div class="pull-left">
+                <a class="btn btn-primary" href="{{ path('app_user_list') }}">
+                    Back To Overview
+                </a>
+            </div>
+
+            <div class="pull-left" style="margin-left:20px;">
+                <form action="{{ path('app_user_delete', { 'id': entity.id }) }}" method="post">
+                    {{ form_start(delete_form) }}
+                    {{ form_widget(delete_form) }}
+                    {{ form_end(delete_form) }}
+                </form>
+            </div>
+
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+pim_video:
+    resource: "@PimVideoBundle/Controller/"
+    type:     annotation
+    prefix:   /pim/video
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+dms_documents:
+    resource: "@DmsDocumentsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+crm_newsletter:
+    resource: "@CrmNewsletterBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+crm_customer:
+    resource: "@CrmCustomerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+crm_calendar:
+    resource: "@CrmCalendarBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+crm_bills:
+    resource: "@CrmBillsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+crm_order:
+    resource: "@CrmOrderBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+crm_contacts:
+    resource: "@CrmContactsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+pim_product:
+    resource: "@PimProductBundle/Resources/config/routing.yml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /apidoc
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"

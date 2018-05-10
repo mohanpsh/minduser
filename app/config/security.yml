@@ -1,0 +1,51 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
+        app.api.key.user.provider:
+            id: app.api.key.user.provider
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+         secured_area:
+            pattern: ^/api/
+            stateless: true
+            simple_preauth:
+                authenticator: app.api.key.authenticator
+            provider: app.api.key.user.provider
+         dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+         main:
+            anonymous: ~
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+
+            logout:       true
+            anonymous:    true
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_API:         ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    access_control:
+        - { path: ^/api/v1, roles: ROLE_API }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_ADMIN }
+

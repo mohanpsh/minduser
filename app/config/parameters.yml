@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: LazyPimCrm
+    database_user: root
+    database_password: sheila
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 86038f6b3e4bfc353aa4b83c526cd4a5d02b1bf8

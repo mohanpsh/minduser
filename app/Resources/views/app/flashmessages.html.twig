@@ -1,0 +1,27 @@
+{% set messages = app.session.flashbag.get('error') %}
+{% if messages|length > 0 %}
+    <div class="setcontainer alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        {% for flashMessage in messages %}
+            <p>{{ flashMessage|raw }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+{% set messages = app.session.flashbag.get('info') %}
+{% if messages|length > 0 %}
+    <div class="setcontainer  alert alert-info">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        {% for flashMessage in messages %}
+            <p>{{ flashMessage|raw }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+{% set messages = app.session.flashbag.get('success') %}
+{% if messages|length > 0 %}
+    <div class="setcontainer  alert alert-success">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        {% for flashMessage in messages %}
+            <p>{{ flashMessage|raw }}</p>
+        {% endfor %}
+    </div>
+{% endif %}

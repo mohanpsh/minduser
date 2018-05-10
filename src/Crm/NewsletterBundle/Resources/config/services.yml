@@ -1,0 +1,4 @@
+services:
+#    crm_newsletter.example:
+#        class: Crm\NewsletterBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

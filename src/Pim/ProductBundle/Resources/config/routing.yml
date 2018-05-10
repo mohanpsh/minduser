@@ -1,0 +1,9 @@
+pim_product_rest:
+    type: rest
+    prefix: /api/
+    resource: "@PimProductBundle/Controller/Rest/"
+
+pim_product_backend:
+    type: annotation
+    prefix: /pim
+    resource: "@PimProductBundle/Controller/Backend/"

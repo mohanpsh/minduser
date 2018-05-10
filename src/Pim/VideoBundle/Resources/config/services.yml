@@ -1,0 +1,4 @@
+services:
+#    pim_video.example:
+#        class: Pim\VideoBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,7 @@
+services:
+    pim_product.database.manager:
+        class: Pim\ProductBundle\Database\Manager
+        arguments: ['@doctrine']
+    pim_product.services.manager:
+        class: Pim\ProductBundle\Services\Manager
+        arguments: ['@app.rest.api_manager', '@pim_product.database.manager']

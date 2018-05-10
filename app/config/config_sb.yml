@@ -1,0 +1,103 @@
+imports:
+    - { resource: parameters_sb.yml }
+    - { resource: config.yml }
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
+        console:
+            type:   console
+            channels: [!event, !doctrine]
+        # uncomment to get logging in your browser
+        # you may have to allow bigger header sizes in your Web server configuration
+        #firephp:
+        #    type:   firephp
+        #    level:  info
+        #chromephp:
+        #    type:   chromephp
+        #    level:  info
+
+#swiftmailer:
+#    delivery_address: me@example.com
+stfalcon_tinymce:
+        include_jquery: true
+        tinymce_jquery: true
+        selector: ".tinymce"
+        base_url: "http://lazypimcrm.local/" # this parameter may be included if you need to override the assets_base_urls for your template engine (to override a CDN base url)
+        language: "%locale%"
+        theme:
+            # Simple theme: same as default theme
+            simple:
+                 theme: "advanced"
+                 file_browser_callback : elFinderBrowser
+            # Advanced theme with almost all enabled plugins
+            advanced:
+                 relative_urls : false
+                 convert_urls: false
+                 file_browser_callback : elFinderBrowser
+                 plugins:
+                     - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                     - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                     - "insertdatetime media nonbreaking save table contextmenu directionality"
+                     - "emoticons template paste textcolor"
+                 toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                 toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example"
+                 image_advtab: true
+                 templates:
+                     - {title: '4 Nebeneinander', content: '<div class="row fixedBild"><div class="col-xs-3">Bild hier</div><div class="col-xs-3">Bild hier</div><div class="col-xs-3">Bild hier</div><div class="col-xs-3">Bild hier</div></div>'}
+                     - {title: '6 Nebeneinander', content: '<div class="row fixedBild"><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div></div>'}
+            content_css : [asset"/bundles/pferdiathekfrontend/css/bootstrap.css"]
+            # BBCode tag compatible theme (see http://www.bbcode.org/reference.php)
+            bbcode:
+                 plugins: ["bbcode, code, link, preview"]
+                 menubar: true
+                 toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
+
+fm_elfinder:
+    instances:
+        default:
+            locale: "%locale%" # defaults to current request locale
+            editor: tinymce4
+            tinymce_popup_path: "asset[bundles/stfalcontinymce/vendor/tiny_mce/tiny_mce_popup.js]"
+            fullscreen: true # defaults true, applies to simple and ckeditor editors
+            include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+            #compression: false # enable if you configured the uglifycss and uglifyjs2 assetic filters and want compression
+            connector:
+                debug: true # defaults to false
+                roots:       # at least one root must be defined
+                    uploads:
+                        driver: LocalFileSystem
+                        path: media
+                        upload_allow: ['video/x-flv','video/mpeg','video/mp4','audio/mpeg','image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M
+        video:
+            locale: "%locale%" # defaults to current request locale
+            editor: tinymce4
+            tinymce_popup_path: "asset[bundles/stfalcontinymce/vendor/tiny_mce/tiny_mce_popup.js]"
+            fullscreen: true # defaults true, applies to simple and ckeditor editors
+            include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+            #compression: false # enable if you configured the uglifycss and uglifyjs2 assetic filters and want compression
+            connector:
+                debug: true # defaults to false
+                roots:       # at least one root must be defined
+                    uploads:
+                        driver: LocalFileSystem
+                        path: video
+                        upload_allow: ['video/x-flv','video/mpeg','video/mp4','audio/mpeg','image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M

@@ -1,0 +1,22 @@
+{% extends "app/base.html.twig" %}
+
+{% block title %}
+    Add Tag
+{% endblock %}
+
+{% block page_content %}
+    {% block top_content_header %}
+    {% endblock %}
+    <div class="setcontainer">
+        {{ elfinder_tinymce_init4('default') }}
+        {{ tinymce_init() }}
+        <h2 style="margin-bottom:0;">ProductManager</h2>
+        <h4 style="margin-top:0;">(add product)</h4>
+        <div class="well">
+            {{ form_start(add_form) }}
+            {{ form_widget(add_form) }}
+            {{ form_end(add_form) }}
+        </div>
+
+    </div>
+{% endblock %}

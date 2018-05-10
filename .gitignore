@@ -1,0 +1,9 @@
+.idea/
+var/logs/*
+var/cache/*
+var/sessions/*
+web/bundles/
+node_modules/*
+web/assets/vendors/*
+vendor/*
+bower_components/*
