@@ -1,3 +1,11 @@
+app_company:
+    resource: "@AppBundle/Controller/CompanyController.php"
+    type:     annotation
+
+app_user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation    
+
 pim_video:
     resource: "@PimVideoBundle/Controller/"
     type:     annotation
@@ -28,8 +36,8 @@ crm_calendar:
     type:     annotation
     prefix:   /
 
-crm_bills:
-    resource: "@CrmBillsBundle/Controller/"
+crm_invoice:
+    resource: "@CrmInvoiceBundle/Controller/"
     type:     annotation
     prefix:   /
 

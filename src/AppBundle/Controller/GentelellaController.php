@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * GentelellaController.
+ * Company Controller.
  */
 class GentelellaController extends Controller
 {
@@ -46,7 +46,7 @@ class GentelellaController extends Controller
     }
 
     /**
-     * @Route("/", name="app_homepage")
+     * @Route("/admin", name="app_homepage")
      *
      * @param Request $request Request
      *

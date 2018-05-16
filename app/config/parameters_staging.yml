@@ -2,9 +2,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: pferdiathek_pim_test
-    database_user: pferdiamysql
-    database_password: test#123System
+    database_name: ***
+    database_user: ****
+    database_password: *****
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null

@@ -60,7 +60,7 @@ stfalcon_tinymce:
                  templates:
                      - {title: '4 Nebeneinander', content: '<div class="row fixedBild"><div class="col-xs-3">Bild hier</div><div class="col-xs-3">Bild hier</div><div class="col-xs-3">Bild hier</div><div class="col-xs-3">Bild hier</div></div>'}
                      - {title: '6 Nebeneinander', content: '<div class="row fixedBild"><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div><div class="col-xs-2">Bild hier</div></div>'}
-            content_css : [asset"/bundles/pferdiathekfrontend/css/bootstrap.css"]
+            content_css : [asset""]
             # BBCode tag compatible theme (see http://www.bbcode.org/reference.php)
             bbcode:
                  plugins: ["bbcode, code, link, preview"]

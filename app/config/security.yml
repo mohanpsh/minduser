@@ -38,14 +38,20 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_API:         ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_ADMIN:       ROLE_CENTER_MANAGER
+        ROLE_CENTER_MANAGER: ROLE_SERVICE_AGENT
+        ROLE_AGENT: ROLE_USER
+        ROLE_SERVICE_AGENT: ROLE_AGENT
+        ROLE_API:         ROLE_USER
+
+        ROLE_CLIENT_SUPER_USER: ROLE_CLIENT_ADMIN_USER
+        ROLE_CLIENT_ADMIN_USER: ROLE_CLIENT_USER
+        ROLE_CLIENT_USER:
 
     access_control:
         - { path: ^/api/v1, roles: ROLE_API }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, role: ROLE_ADMIN }
-
+        - { path: ^/admin, role: ROLE_ADMIN }

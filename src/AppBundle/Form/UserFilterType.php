@@ -20,11 +20,10 @@ use Lexik\Bundle\FormFilterBundle\Filter\Form\Type as Filters;
 
 /**
  * Class UserFilterType
- * @package Pferdiathek\BackendBundle\Form
+ * @package AppBundle\Form
  */
 class UserFilterType extends AbstractType
 {
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options

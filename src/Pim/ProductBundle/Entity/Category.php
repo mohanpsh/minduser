@@ -15,7 +15,6 @@ namespace Pim\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Ilenvo\Tools\BlogBundle\Entity\Blog;
 
 /**
  * Category

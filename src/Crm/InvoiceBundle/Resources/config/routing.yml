@@ -1,0 +1,4 @@
+crm_invoice_backend:
+    type: annotation
+    prefix: /crm
+    resource: "@CrmInvoiceBundle/Controller/Backend/"

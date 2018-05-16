@@ -43,17 +43,18 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             //internal bundles
             new AppBundle\AppBundle(),
             new Pim\ProductBundle\PimProductBundle(),
             new Crm\ContactsBundle\CrmContactsBundle(),
             new Crm\OrderBundle\CrmOrderBundle(),
-            new Crm\BillsBundle\CrmBillsBundle(),
             new Crm\CalendarBundle\CrmCalendarBundle(),
             new Crm\CustomerBundle\CrmCustomerBundle(),
             new Crm\NewsletterBundle\CrmNewsletterBundle(),
             new Dms\DocumentsBundle\DmsDocumentsBundle(),
             new Pim\VideoBundle\PimVideoBundle(),
+            new Crm\InvoiceBundle\CrmInvoiceBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test', 'sb', 'staging'], true)) {

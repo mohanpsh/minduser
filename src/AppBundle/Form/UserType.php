@@ -13,6 +13,7 @@
 
 namespace AppBundle\Form;
 
+use FOS\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type as FormType;
@@ -22,16 +23,14 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * Class UserType
- * @package Pferdiathek\BackendBundle\Form
+ * @package AppBundle\Form
  */
 class UserType extends AbstractType
 {
-
     /**
      * @var array
      */
     private $roleHierarchy;
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -40,27 +39,21 @@ class UserType extends AbstractType
     {
         $this->roleHierarchy = $options['roles'] ? $options['roles'] : [];
         $builder->add('email', FormType\EmailType::class, ['required' => true])
-            ->add('emailCanonical', FormType\EmailType::class, ['required' => true])
             ->add('username', FormType\TextType::class, ['required' => true])
-            ->add('usernameCanonical', FormType\TextType::class, ['required' => true])
             ->add('enabled', FormType\CheckboxType::class, ['required' => false])
             ->add('firstName', FormType\TextType::class, ['required' => false])
             ->add('lastName', FormType\TextType::class, ['required' => false])
-            ->add('apiKey', FormType\TextType::class, ['required' => false])
-            ->add('Roles', FormType\ChoiceType::class, [
-                    'choices' => $this->getExistingRoles(),
-                    'multiple' => true,
-                    'expanded' => true,
-                    'label' => 'Roles (ROLE_USER added automatically)',
-                    'required' => false
-                ]
-            )
-            ->add('lastLogin', FormType\DateTimeType::class, ['required' => false])
-            ->add('update', FormType\SubmitType::class, array('label' => 'Update User', 'attr' => ['class' => 'btn-success']))
-        ;
-
+            ->add('title', FormType\TextType::class, ['required' => false])
+            ->add('adress', FormType\TextType::class, ['required' => false])
+            ->add('plz', FormType\TextType::class, ['required' => false])
+            ->add('city', FormType\TextType::class, ['required' => false])
+            ->add('telephone', FormType\TextType::class, ['required' => false])
+       ;
     }
-
+    public function getParent()
+    {
+        return RegistrationFormType::class;
+    }
     /**
      * @return string
      */
@@ -68,7 +61,6 @@ class UserType extends AbstractType
     {
         return 'user';
     }
-
     /**
      * @param OptionsResolver $resolver
      */
@@ -79,7 +71,6 @@ class UserType extends AbstractType
             'roles' => null
         ));
     }
-
     /**
      * @return array
      */
