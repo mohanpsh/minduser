@@ -21,7 +21,7 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('users_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a href="{{ path('app_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.title }}</td>
                 <td>{{ user.adress }}</td>
@@ -33,10 +33,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('users_show', { 'id': user.id }) }}">show</a>
+                            <a href="{{ path('app_user_show', { 'id': user.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('users_edit', { 'id': user.id }) }}">edit</a>
+                            <a href="{{ path('app_user_edit', { 'id': user.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -47,7 +47,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('users_new') }}">Create a new user</a>
+            <a href="{{ path('app_user_new') }}">Create a new user</a>
         </li>
     </ul>
 {% endblock %}
