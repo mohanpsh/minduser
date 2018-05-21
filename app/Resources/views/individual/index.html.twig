@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Individuals list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Title</th>
+                <th>Adress</th>
+                <th>Plz</th>
+                <th>City</th>
+                <th>Telephone</th>
+                <th>Lastname</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for individual in individuals %}
+            <tr>
+                <td><a href="{{ path('app_individual_show', { 'id': individual.id }) }}">{{ individual.id }}</a></td>
+                <td>{{ individual.nameFirst }}</td>
+                <td>{{ individual.titel }}</td>
+                <td>{{ individual.address }}</td>
+                <td>{{ individual.plz }}</td>
+                <td>{{ individual.city }}</td>
+                <td>{{ individual.tel }}</td>
+                <td>{{ individual.nameLast }}</td>
+                
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_individual_show', { 'id': individual.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_individual_edit', { 'id': individual.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_individual_new') }}">Create a new individual</a>
+        </li>
+    </ul>
+{% endblock %}

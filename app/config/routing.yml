@@ -4,7 +4,11 @@ app_company:
 
 app_user:
     resource: "@AppBundle/Controller/UserController.php"
-    type:     annotation    
+    type:     annotation
+
+app_individual:
+    resource: "@AppBundle/Controller/IndividualController.php"
+    type:     annotation
 
 pim_video:
     resource: "@PimVideoBundle/Controller/"

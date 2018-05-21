@@ -54,4 +54,16 @@ class Factory
 
         return $this->setter[__FUNCTION__];
     }
+
+    /**
+     * @return EntityRepository
+     */
+    public function individual(): EntityRepository
+    {
+        if (!isset($this->setter[__FUNCTION__])) {
+            $this->setter[__FUNCTION__] = $this->ormEm->getRepository('AppBundle:Individual');
+        }
+
+        return $this->setter[__FUNCTION__];
+    }
 }

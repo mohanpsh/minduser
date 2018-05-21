@@ -50,11 +50,18 @@ class Company
     private $users;
 
     /**
+     * Many Individuals have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Individual", mappedBy="companies")
+     */
+    private $individuals;
+
+    /**
      * Company constructor.
      */
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->individuals = new ArrayCollection();
     }
 
     /**
