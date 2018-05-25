@@ -66,4 +66,16 @@ class Factory
 
         return $this->setter[__FUNCTION__];
     }
+
+    /**
+     * @return EntityRepository
+     */
+    public function center(): EntityRepository
+    {
+        if (!isset($this->setter[__FUNCTION__])) {
+            $this->setter[__FUNCTION__] = $this->ormEm->getRepository('AppBundle:BusinessCenter');
+        }
+
+        return $this->setter[__FUNCTION__];
+    }
 }

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Business Center</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ center.id }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ center.city }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ center.address }}</td>
+            </tr>
+            <tr>
+                <th>Pin Code</th>
+                <td>{{ center.pincode }}</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>{{ center.phoneNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_center_list') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('app_center_edit', { 'id': center.id }) }}">Edit</a>
+        </li>
+    </ul>
+{% endblock %}

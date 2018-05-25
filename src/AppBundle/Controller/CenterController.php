@@ -3,9 +3,11 @@
 /**
  * all code by me
  *
- * @copyright  Mohan P sharma
+ * @copyright  Stefan H.G. Buchhofer
  * @version    Release: 1.0.0
- * @year       2018
+ * @link       www.ilenvo-media.de
+ * @email      ilenvo@me.com
+ * @year       2016
  *
  */
 
@@ -24,14 +26,14 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type as FormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use AppBundle\Entity\Individual;
+use AppBundle\Entity\BusinessCenter;
 
 /**
- * Class IndividualController
- * @Route("/app/individual")
+ * Class CenterController
+ * @Route("/app/center")
  * @package Pferdiathek\BackendBundle\Controller
  */
-class IndividualController extends Controller
+class CenterController extends Controller
 {
     /**
      * @Inject("form.factory")
@@ -58,8 +60,7 @@ class IndividualController extends Controller
     private $dbM;
 
     /**
-     * @Secure(roles="ROLE_SUPER_ADMIN")
-     * @Route("/list", name="app_individual_list")
+     * @Route("/list", name="app_center_list")
      * @Template()
      * @param Request $request
      * @return Response
@@ -67,103 +68,95 @@ class IndividualController extends Controller
     public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $individuals = $em->getRepository('AppBundle:Individual')->findAll();
-        return $this->render('individual/index.html.twig', array(
-            'individuals' => $individuals,
-            'page_title' => 'Individuals Management'
+        $centers = $em->getRepository('AppBundle:BusinessCenter')->findAll();
+        return $this->render('center/index.html.twig', array(
+            'centers' => $centers,
+            'page_title' => 'Business Center Management'
         ));
     }
 
     /**
-     * @Route("/new", name="app_individual_new")
+     * @Route("/new", name="app_center_new")
      * @Template()
      * @param Request $request
      * @return Response
      */
     public function newAction(Request $request)
     {
-        $individual = new Individual();
-        $form = $this->createForm('AppBundle\Form\IndividualType', $individual)
-            ->add('companies')
-       ;
+        $center = new BusinessCenter();
+        $form = $this->createForm('AppBundle\Form\CenterType', $center);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($individual);
+            $em->persist($center);
             $em->flush();
-            return $this->redirectToRoute('app_individual_show', array('id' => $individual->getId()));
+            return $this->redirectToRoute('app_center_show', array('id' => $center->getId()));
         }
-        return $this->render('individual/new.html.twig', array(
-            'individual' => $individual,
+        return $this->render('center/new.html.twig', array(
+            'center' => $center,
             'form' => $form->createView(),
-            'page_title' => 'Individuals Management'
+            'page_title' => 'Business Center Management'
         ));
     }
 
-    /**
-     * @Route("/{id}/show", name="app_individual_show")
+    /** 
+     * @Route("/{id}/show", name="app_center_show")
      * @Template()
      */
     public function showAction($id)
     {
-        $entity = $this->dbM->repository()->individual()->find($id);
+        $entity = $this->dbM->repository()->center()->find($id);
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Individual entity.');
+            throw $this->createNotFoundException('Unable to find Business Center entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        return $this->render('individual/show.html.twig', array(
-            'individual' => $entity,
-            'delete_form' => $deleteForm->createView(),
-            'page_title' => 'Individuals Management'
+        return $this->render('center/show.html.twig', array(
+            'center' => $entity,
+            'page_title' => 'Business Center Management'
         ));
     }
 
     /**
-     * @Route("/{id}/edit", name="app_individual_edit")
+     * @Route("/{id}/edit", name="app_center_edit")
      * @Template()
      */
     public function editAction(Request $request, $id)
     {
-        $entity = $this->dbM->repository()->individual()->find($id);
+        $entity = $this->dbM->repository()->center()->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Individual entity.');
+            throw $this->createNotFoundException('Unable to find Business Center entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        $individual = $entity;
-        $roles=[];
-        foreach (array_keys($this->getParameter('security.role_hierarchy.roles')) as $role)
-            $roles[$role]=$role;
-        $editForm = $this->createForm('AppBundle\Form\IndividualType', $individual)
-            ->add('companies')
-            ->add('update', SubmitType::class, array('label' => 'Update Individual', 'attr' => ['class' => 'btn-success']))
+        
+        $center = $entity;
+        
+        $editForm = $this->createForm('AppBundle\Form\CenterType', $center)
+            ->add('update', SubmitType::class, array('label' => 'Update Business center', 'attr' => ['class' => 'btn-success']))
        ;
 
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('app_individual_list', array('id' => $individual->getId()));
+            return $this->redirectToRoute('app_center_list', array('id' => $center->getId()));
         }
-        return $this->render('individual/edit.html.twig', array(
-            'individual' => $individual,
+        return $this->render('center/edit.html.twig', array(
+            'center' => $center,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            'page_title' => 'Individuals Management'
+            'page_title' => 'Business Center Management'
         ));
     }
 
     /**
-     * @Route("/{id}/delete", name="app_individual_delete")
+     * @Route("/{id}/delete", name="app_center_delete")
      * @Template()
      *
      */
     public function deleteAction(Request $request, $id)
     {
         $this->get('session')->getFlashBag()->add('error', 'Delete is currently deactivated!');
-        return $this->redirect($this->generateUrl('app_individual_list'));
+        return $this->redirect($this->generateUrl('app_center_list'));
     }
 
     /**
@@ -175,7 +168,7 @@ class IndividualController extends Controller
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', HiddenType::class)
             ->add('update', FormType\SubmitType::class, [
-                    'label' => 'Delete Individual',
+                    'label' => 'Delete Center',
                     'attr' => [
                         'class' => 'btn-danger',
                         'onclick' => 'return confirm(\'Really Delete?\')'

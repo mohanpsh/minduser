@@ -72,6 +72,7 @@ class UserController extends Controller
         $users = $em->getRepository('AppBundle:User')->findAll();
         return $this->render('user/index.html.twig', array(
             'users' => $users,
+            'page_title' => 'User Management'
         ));
     }
 
@@ -109,6 +110,7 @@ class UserController extends Controller
         return $this->render('user/new.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
+            'page_title' => 'User Management'
         ));
     }
 
@@ -135,6 +137,7 @@ class UserController extends Controller
         return $this->render('user/show.html.twig', array(
             'user' => $entity,
             'delete_form' => $deleteForm->createView(),
+            'page_title' => 'User Management'
         ));
     }
 
@@ -202,6 +205,7 @@ class UserController extends Controller
             'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'page_title' => 'User Management'
         ));
     }
 
