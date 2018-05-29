@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Business Centers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>City</th>
+                <th>Adress</th>
+                <th>Pincode</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for center in centers %}
+            <tr>
+                <td><a href="{{ path('app_center_show', { 'id': center.id }) }}">{{ center.id }}</a></td>
+                <td>{{ center.city }}</td>
+                <td>{{ center.address }}</td>
+                <td>{{ center.pincode }}</td>
+                <td>{{ center.phoneNumber }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_center_show', { 'id': center.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_center_edit', { 'id': center.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_center_new') }}">Create a new center</a>
+        </li>
+    </ul>
+{% endblock %}

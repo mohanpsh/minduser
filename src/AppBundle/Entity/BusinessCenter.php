@@ -57,15 +57,20 @@ class BusinessCenter
     private $phoneNumber;
 
     /**
-    * @ORM\OneToMany(targetEntity="CommonSpace", mappedBy="centerID")
+    * @ORM\OneToMany(targetEntity="CommonSpace", mappedBy="centerId")
     */
     private $commonSpace;
 
     /**
-    * @ORM\OneToMany(targetEntity="PrivateSpace", mappedBy="centerID")
+    * One Center has Many PrivateSpace.
+    * @ORM\OneToMany(targetEntity="PrivateSpace", mappedBy="centerId")
     */
     private $privateSpace;
 
+    public function __construct() {
+        $this->features = new ArrayCollection();
+    }
+    
     /**
      * Get id.
      *
@@ -170,5 +175,21 @@ class BusinessCenter
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrivateSpace()
+    {
+        return $this->privateSpace;
+    }
+
+    /**
+     * @param mixed $privateSpace
+     */
+    public function setPrivateSpace($privateSpace)
+    {
+        $this->privateSpace = $privateSpace;
     }
 }

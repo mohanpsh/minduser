@@ -29,10 +29,11 @@ class PrivateSpace
     private $id;
 
     /**
+     * Many PrivateSpace have One Center.
      * @ORM\ManyToOne(targetEntity="BusinessCenter", inversedBy="privateSpace")
      * @ORM\JoinColumn(name="center_id", referencedColumnName="id")
      */
-    private $centerID;
+    private $centerId;
 
     /**
      * @var int
@@ -67,23 +68,15 @@ class PrivateSpace
     }
 
     /**
-     * Set centerId.
-     *
-     * @param int $centerId
-     *
-     * @return privateSpace
+     * @param mixed $centerId
      */
     public function setCenterId($centerId)
     {
         $this->centerId = $centerId;
-
-        return $this;
     }
 
     /**
-     * Get centerId.
-     *
-     * @return int
+     * @return mixed
      */
     public function getCenterId()
     {
