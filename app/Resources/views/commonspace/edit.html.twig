@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Private Space edit</h1>
+    <h1>Common Space edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -9,7 +9,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('app_private_list') }}">Back to the list</a>
+            <a href="{{ path('app_common_list') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

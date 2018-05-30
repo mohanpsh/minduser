@@ -22,14 +22,14 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type as FormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use AppBundle\Entity\PrivateSpace;
+use AppBundle\Entity\CommonSpace;
 
 /**
- * Class PrivateSpaceController
- * @Route("/app/private")
+ * Class CommonSpaceController
+ * @Route("/app/common")
  * @package Pferdiathek\BackendBundle\Controller
  */
-class PrivateSpaceController extends Controller
+class CommonSpaceController extends Controller
 {
     /**
      * @Inject("form.factory")
@@ -56,7 +56,7 @@ class PrivateSpaceController extends Controller
     private $dbM;
 
     /**
-     * @Route("/list", name="app_private_list")
+     * @Route("/list", name="app_common_list")
      * @Template()
      * @param Request $request
      * @return Response
@@ -64,97 +64,97 @@ class PrivateSpaceController extends Controller
     public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $spaces = $em->getRepository('AppBundle:PrivateSpace')->findAll();
-        return $this->render('privatespace/index.html.twig', array(
+        $spaces = $em->getRepository('AppBundle:CommonSpace')->findAll();
+        return $this->render('commonspace/index.html.twig', array(
             'spaces' => $spaces,
-            'page_title' => 'Private Space Management'
+            'page_title' => 'Common Space Management'
         ));
     }
 
     /**
-     * @Route("/new", name="app_private_new")
+     * @Route("/new", name="app_common_new")
      * @Template()
      * @param Request $request
      * @return Response
      */
     public function newAction(Request $request)
     {
-        $privatespace = new PrivateSpace();
-        $form = $this->createForm('AppBundle\Form\PrivateSpaceType', $privatespace)
+        $commonspace = new CommonSpace();
+        $form = $this->createForm('AppBundle\Form\CommonSpaceType', $commonspace)
                 ->add('center');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($privatespace);
+            $em->persist($commonspace);
             $em->flush();
-            return $this->redirectToRoute('app_private_show', array('id' => $privatespace->getId()));
+            return $this->redirectToRoute('app_common_show', array('id' => $commonspace->getId()));
         }
-        return $this->render('privatespace/new.html.twig', array(
-            'privatespace' => $privatespace,
+        return $this->render('commonspace/new.html.twig', array(
+            'commonspace' => $commonspace,
             'form' => $form->createView(),
-            'page_title' => 'Private Space Management'
+            'page_title' => 'Common Space Management'
         ));
     }
 
     /** 
-     * @Route("/{id}/show", name="app_private_show")
+     * @Route("/{id}/show", name="app_common_show")
      * @Template()
      */
     public function showAction($id)
     {
-        $entity = $this->dbM->repository()->privatespace()->find($id);
+        $entity = $this->dbM->repository()->commonspace()->find($id);
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Business Private Space entity.');
+            throw $this->createNotFoundException('Unable to find Business Common Space entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        return $this->render('privatespace/show.html.twig', array(
-            'privatespace' => $entity,
-            'page_title' => 'Private Space Management'
+        return $this->render('commonspace/show.html.twig', array(
+            'commonspace' => $entity,
+            'page_title' => 'Common Space Management'
         ));
     }
 
     /**
-     * @Route("/{id}/edit", name="app_private_edit")
+     * @Route("/{id}/edit", name="app_common_edit")
      * @Template()
      */
     public function editAction(Request $request, $id)
     {
-        $entity = $this->dbM->repository()->privatespace()->find($id);
+        $entity = $this->dbM->repository()->commonspace()->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Business Center entity.');
         }
 
         
-        $privatespace = $entity;
+        $commonspace = $entity;
         
-        $editForm = $this->createForm('AppBundle\Form\PrivateSpaceType', $privatespace)
+        $editForm = $this->createForm('AppBundle\Form\CommonSpaceType', $commonspace)
             ->add('center')
-            ->add('update', SubmitType::class, array('label' => 'Update Private Space', 'attr' => ['class' => 'btn-success']))
+            ->add('update', SubmitType::class, array('label' => 'Update Common Space', 'attr' => ['class' => 'btn-success']))
        ;
 
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('app_private_list', array('id' => $privatespace->getId()));
+            return $this->redirectToRoute('app_common_list', array('id' => $commonspace->getId()));
         }
-        return $this->render('privatespace/edit.html.twig', array(
-            'privatespace' => $privatespace,
+        return $this->render('commonspace/edit.html.twig', array(
+            'commonspace' => $commonspace,
             'edit_form' => $editForm->createView(),
-            'page_title' => 'Private Space Management'
+            'page_title' => 'Common Space Management'
         ));
     }
 
     /**
-     * @Route("/{id}/delete", name="app_private_delete")
+     * @Route("/{id}/delete", name="app_common_delete")
      * @Template()
      *
      */
     public function deleteAction(Request $request, $id)
     {
         $this->get('session')->getFlashBag()->add('error', 'Delete is currently deactivated!');
-        return $this->redirect($this->generateUrl('app_private_list'));
+        return $this->redirect($this->generateUrl('app_common_list'));
     }
 
     /**
@@ -166,7 +166,7 @@ class PrivateSpaceController extends Controller
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', HiddenType::class)
             ->add('update', FormType\SubmitType::class, [
-                    'label' => 'Delete Private Space',
+                    'label' => 'Delete Common Space',
                     'attr' => [
                         'class' => 'btn-danger',
                         'onclick' => 'return confirm(\'Really Delete?\')'

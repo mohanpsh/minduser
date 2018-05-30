@@ -78,4 +78,28 @@ class Factory
 
         return $this->setter[__FUNCTION__];
     }
+
+    /**
+     * @return EntityRepository
+     */
+    public function privatespace(): EntityRepository
+    {
+        if (!isset($this->setter[__FUNCTION__])) {
+            $this->setter[__FUNCTION__] = $this->ormEm->getRepository('AppBundle:PrivateSpace');
+        }
+
+        return $this->setter[__FUNCTION__];
+    }
+
+    /**
+     * @return EntityRepository
+     */
+    public function commonspace(): EntityRepository
+    {
+        if (!isset($this->setter[__FUNCTION__])) {
+            $this->setter[__FUNCTION__] = $this->ormEm->getRepository('AppBundle:CommonSpace');
+        }
+
+        return $this->setter[__FUNCTION__];
+    }
 }

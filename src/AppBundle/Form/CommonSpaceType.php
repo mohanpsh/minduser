@@ -14,14 +14,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type as FormType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Entity\BusinessCenter as BusinessEntity;
+use AppBundle\Entity\CommonSpace as CommonSpaceEntity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
- * Class CenterType
+ * Class CommonSpaceType
  * @package AppBundle\Form
  */
-class CenterType extends AbstractType
+class CommonSpaceType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -29,11 +29,9 @@ class CenterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', FormType\TextType::class, ['required' => true])
-            ->add('city', FormType\TextType::class, ['required' => true])
-            ->add('address', FormType\TextType::class, ['required' => false])
-            ->add('pincode', FormType\TextType::class, ['required' => false])
-            ->add('phonenumber', FormType\TextType::class, ['required' => false])
+        $builder
+            ->add('doorId', FormType\TextType::class, ['required' => false])
+            ->add('doorDescription', FormType\TextType::class, ['required' => false])
        ;
     }
     /**
@@ -41,7 +39,7 @@ class CenterType extends AbstractType
      */
     public function getName()
     {
-        return 'business_center';
+        return 'common_space';
     }
     /**
      * @param OptionsResolver $resolver
@@ -49,7 +47,7 @@ class CenterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => BusinessEntity::class
+            'data_class' => CommonSpaceEntity::class
         ));
     }
 }

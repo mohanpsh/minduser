@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Common Space</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commonspace.id }}</td>
+            </tr>
+            <tr>
+                <th>Door ID</th>
+                <td>{{ commonspace.doorId }}</td>
+            </tr>
+            <tr>
+                <th>Door Description</th>
+                <td>{{ commonspace.doorDescription }}</td>
+            </tr>
+            <tr>
+                <th>Center</th>
+                <td>{{ commonspace.center }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_common_list') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('app_common_edit', { 'id': commonspace.id }) }}">Edit</a>
+        </li>
+    </ul>
+{% endblock %}

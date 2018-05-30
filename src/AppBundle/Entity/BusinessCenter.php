@@ -9,6 +9,7 @@
  */
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,13 @@ class BusinessCenter
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
 
     /**
      * @var string|null
@@ -57,18 +65,19 @@ class BusinessCenter
     private $phoneNumber;
 
     /**
-    * @ORM\OneToMany(targetEntity="CommonSpace", mappedBy="centerId")
+    * @ORM\OneToMany(targetEntity="CommonSpace", mappedBy="center")
     */
     private $commonSpace;
 
     /**
     * One Center has Many PrivateSpace.
-    * @ORM\OneToMany(targetEntity="PrivateSpace", mappedBy="centerId")
+    * @ORM\OneToMany(targetEntity="PrivateSpace", mappedBy="center")
     */
     private $privateSpace;
 
     public function __construct() {
-        $this->features = new ArrayCollection();
+        $this->privateSpace = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commonSpace = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -79,6 +88,29 @@ class BusinessCenter
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name.
+     *
+     * @param string|null $name
+     *
+     * @return BusinessCenter
+     */
+    public function setName($name = null)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -191,5 +223,10 @@ class BusinessCenter
     public function setPrivateSpace($privateSpace)
     {
         $this->privateSpace = $privateSpace;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

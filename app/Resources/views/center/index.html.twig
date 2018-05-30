@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Name</th>
                 <th>City</th>
                 <th>Adress</th>
                 <th>Pincode</th>
@@ -18,6 +19,7 @@
         {% for center in centers %}
             <tr>
                 <td><a href="{{ path('app_center_show', { 'id': center.id }) }}">{{ center.id }}</a></td>
+                <td>{{ center.name }}</td>
                 <td>{{ center.city }}</td>
                 <td>{{ center.address }}</td>
                 <td>{{ center.pincode }}</td>

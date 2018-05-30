@@ -29,10 +29,10 @@ class CommonSpace
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BusinessCenter", inversedBy="commonSpace")
-     * @ORM\JoinColumn(name="center_id", referencedColumnName="id")
+     * Many Private space have one business center.
+     * @ORM\ManyToOne(targetEntity="BusinessCenter", inversedBy="center")
      */
-    private $centerID;
+    private $center;
 
     /**
      * @var int
@@ -60,27 +60,27 @@ class CommonSpace
     }
 
     /**
-     * Set centerID.
+     * Set center
      *
-     * @param int $centerID
+     * @param int $center
      *
      * @return CommonSpace
      */
-    public function setCenterID($centerID)
+    public function setCenter($center)
     {
-        $this->centerID = $centerID;
+        $this->center = $center;
 
         return $this;
     }
 
     /**
-     * Get centerID.
+     * Get center
      *
      * @return int
      */
-    public function getCenterID()
+    public function getCenter()
     {
-        return $this->centerID;
+        return $this->center;
     }
 
     /**

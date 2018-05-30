@@ -1,39 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Business Center</h1>
+    <h1>Private Space</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ center.id }}</td>
+                <td>{{ privatespace.id }}</td>
             </tr>
             <tr>
-                <th>City</th>
-                <td>{{ center.city }}</td>
+                <th>Room Number</th>
+                <td>{{ privatespace.roomNumber }}</td>
             </tr>
             <tr>
-                <th>Adress</th>
-                <td>{{ center.address }}</td>
+                <th>Door ID</th>
+                <td>{{ privatespace.doorId }}</td>
             </tr>
             <tr>
-                <th>Pin Code</th>
-                <td>{{ center.pincode }}</td>
+                <th>Type Of Room</th>
+                <td>{{ privatespace.typeOfRoom }}</td>
             </tr>
             <tr>
-                <th>Phone Number</th>
-                <td>{{ center.phoneNumber }}</td>
+                <th>Center</th>
+                <td>{{ privatespace.center }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('app_center_list') }}">Back to the list</a>
+            <a href="{{ path('app_private_list') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('app_center_edit', { 'id': center.id }) }}">Edit</a>
+            <a href="{{ path('app_private_edit', { 'id': privatespace.id }) }}">Edit</a>
         </li>
     </ul>
 {% endblock %}
