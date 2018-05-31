@@ -119,6 +119,13 @@ class Individual
      */
     private $picture;
 
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="userid", type="integer", nullable=true)
+     */
+    private $userid;
+
 
     /**
      * Get id.
@@ -392,6 +399,30 @@ class Individual
     public function getTel()
     {
         return $this->tel;
+    }
+
+    /**
+     * Set userid
+     *
+     * @param string $userid
+     *
+     * @return Individual
+     */
+    public function setUserid($userid = null)
+    {
+        $this->userid = $userid;
+
+        return $this;
+    }
+
+    /**
+     * Get userid.
+     *
+     * @return intger
+     */
+    public function getUserid()
+    {
+        return $this->userid;
     }
 
     /**

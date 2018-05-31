@@ -213,6 +213,7 @@ class User extends BaseUser
         $this->lastName = $lastName;
         return $this;
     }
+
     /**
      * @return string
      */

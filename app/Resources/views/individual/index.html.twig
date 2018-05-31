@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Firstname</th>
+                <th>Email</th>
                 <th>Title</th>
                 <th>Adress</th>
                 <th>Plz</th>
@@ -23,6 +24,7 @@
             <tr>
                 <td><a href="{{ path('app_individual_show', { 'id': individual.id }) }}">{{ individual.id }}</a></td>
                 <td>{{ individual.nameFirst }}</td>
+                <td>{{ individual.Email }}</td>
                 <td>{{ individual.titel }}</td>
                 <td>{{ individual.address }}</td>
                 <td>{{ individual.plz }}</td>
