@@ -9,7 +9,7 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_info">
-                <span>Welcome, {{ app.user ? app.user.username }} </span>
+                <span>Welcome {{ app.user ? app.user.username }} </span>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -40,21 +40,32 @@
                     <li><a href="{{ path('crm_invoice_invoice_list') }}"><i class="fa fa-product-hunt"></i> Invoice</a></li>
                     <li><a href="#"><i class="fa fa-product-hunt"></i> Templates</a></li>
                     <li><a href="#"><i class="fa fa-product-hunt"></i> NumberRange</a></li>
+                    <li><a href="{{path('app_individual_list')}}"><i class="fa fa-product-hunt"></i> Directory</a></li>
                 </ul>
             </div>
             <div class="menu_section">
+                <h3>USERS</h3>
+                <ul class="nav side-menu">
+                    <li><a href="{{ path('app_user_list') }}"><i class="fa fa-product-hunt"></i> User</a></li>
+                </ul>
+            </div>
+
+            <div class="menu_section">
+                <h3>PIM</h3>
+                <ul class="nav side-menu">
+                    <li><a href="{{ path('app_center_list') }}"><i class="fa fa-users"></i>Center Manager</a></li>
+                </ul>
+            </div>
+
+
+            <!-- <div class="menu_section">
                 <h3>Super Administrator</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{{ path('app_user_list') }}"><i class="fa fa-users"></i> User Manager</a></li>
                     <li><a href="{{ path('company_index') }}"><i class="fa fa-users"></i> Comapny Manager</a></li>
-
-                    <li><a href="{{ path('app_individual_list') }}"><i class="fa fa-users"></i> Individuals Manager</a></li>
-                    <li><a href="{{ path('app_center_list') }}"><i class="fa fa-users"></i> Business Center Manager</a></li>
-
                     <li><a href="{{ path('app_private_list') }}"><i class="fa fa-users"></i> Private Space Manager</a></li>
                     <li><a href="{{ path('app_common_list') }}"><i class="fa fa-users"></i> Common Space Manager</a></li>
                 </ul>
-            </div>
+            </div> -->
             
         </div>
         <!-- /sidebar menu -->
