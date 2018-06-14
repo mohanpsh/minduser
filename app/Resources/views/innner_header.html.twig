@@ -1,0 +1,9 @@
+{% for tab in tabs %}
+	<button><a  href="{{ path(tab.url) }}">{{ tab.title }}</a></button>
+{% endfor %}
+
+
+<div style='border:1px solid black;'>
+	<h3 style='display:inline-block'>{{ activeTab.title }}</h3>
+	<button  style='display:inline-block;float:right;'><a  href="{{ path(activeTab.url) }}">{{ activeTab.title }}</a></button>
+</div>

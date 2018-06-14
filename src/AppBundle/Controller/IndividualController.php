@@ -69,9 +69,14 @@ class IndividualController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $individuals = $em->getRepository('AppBundle:Individual')->findAll();
+        $tabs = array(['title' => 'Individuals','url' => ('app_individual_list'),'active'=>true],
+                        ['title' => 'Companies' , 'url' => ('company_index'),'active'=>false]);
+        $activeTab = ['title' => 'Individuals List','url' => ('app_individual_new')];
         return $this->render('individual/index.html.twig', array(
             'individuals' => $individuals,
-            'page_title' => 'Individuals Management'
+            'page_title' => 'Individuals Management',
+            'tabs' => $tabs,
+            'activeTab' => $activeTab,
         ));
     }
 

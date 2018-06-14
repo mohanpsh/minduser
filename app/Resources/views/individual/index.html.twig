@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Individuals list</h1>
-
+    {{ include('innner_header.html.twig', { 'tabs': tabs , 'activeTab': activeTab }) }}
     <table>
         <thead>
             <tr>
